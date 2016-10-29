@@ -14,21 +14,29 @@
     		<li class="active"><a data-toggle="tab" href="#CME">Current Month's Expenditure</a></li>
     		<li><a data-toggle="tab" href="#PME">Past Months Expenditure</a></li>
     		<li><a data-toggle="tab" href="#HA">Historical Analysis</a></li>
+    		<li><a data-toggle="tab" href="#IT">Import Table</a></li> 
+
  		 </ul>
   <div class="tab-content">
     <div id="CME" class="tab-pane fade in active">
       <h3>Current Month's Expenditure</h3>
-      <p>XYZ</p>
+      <p>XYZ</p> 
+      {{ember-chart type='pie' data=pieData width=350 height=350 legend=true}} 
     </div>
-    <div id="PME" class="tab-pane fade">
+    <div id="PME" class="tab-pane fade in active">
       <h3>Past Month's Expenditure</h3>
-      <p>ABC</p>
+      <p>ABC</p> 
+      {{ember-chart type='pie' data=pieData2 width=350 height=350 legend=true}}
     </div>
-    <div id="HA" class="tab-pane fade">
+    <div id="HA" class="tab-pane fade in active">
       <h3>Historical Analysis</h3>
-      <p></p>
-    </div>
+      <p></p> 
+      {{ember-chart type='pie' data=pieData3 width=350 height=350 legend=true}}
+    </div> 
+    <div id="IT" class="tab-pane fade">
+      <h3>Import Table</h3>
+      <p></p> 
+    </div> 
   </div>
 </body>
-{{ember-chart type='pie' data=pieData width=200 height=200 legend=true}}
 {{outlet}}

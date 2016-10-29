@@ -19,5 +19,43 @@ export default Ember.Controller.extend({
 				}
 			]
 		};
+	}),
+	pieValue4: 10,
+	pieValue5: 70,
+	pieValue6: 600,
+	pieData2: Ember.computed('pieValue4', 'picValue5', 'pieValue6', function(){
+		return {
+		labels: ["Red", "Green", "Yellow"],
+		datasets: [
+				{
+					data:[
+						parseInt(this.get('pieValue4')),
+						parseInt(this.get('pieValue5')),
+						parseInt(this.get('pieValue6'))
+					],
+					backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+					hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+				}
+			]
+		};
+	}),
+	pieValue7: 300,
+	pieValue8: 50,
+	pieValue9: 100,
+	pieData3: Ember.computed('pieValue7', 'picValue8', 'pieValue9', function(){
+		return {
+		labels: ["Red", "Green", "Yellow"],
+		datasets: [
+				{
+					data:[
+						parseInt(this.get('pieValue7')),
+						parseInt(this.get('pieValue8')),
+						parseInt(this.get('pieValue9'))
+					],
+					backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+					hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+				}
+			]
+		};
 	})
 });
