@@ -1,3 +1,26 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<h1 id="title">Welcome to Chartreuse</h1> 
+<h4 id="description">Your Personal and Secure Banking Application</h4><br><br> 
+<ul class="tabs">
+	<li><a href="javascript:void(0)" class="tab" onclick="openPage(event, 'Current Month Expenditure')">Current Month Expenditure</a></li>
+	<li><a href="javascript:void(0)" class="tab" onclick="openPage(event, 'Past Months Expenditure')">Past Months Expenditure</a></li> 
+	<li><a href="javascript:void(0)" class="tab" onclick="openPage(event, 'Historical Analysis')">Historical Analysis</a></li>
+</ul>
 
+<div id="CME" class="tabinfo">
+	<h3>Current Month Expenditure</h3> 
+	<p>xyz</p>
+</div> 
+
+<div id="PME" class="tabinfo">
+	<h3>Past Months Expenditure</h3> 
+	<p>abc</p>
+</div>
+
+<div id="HA" class="tabinfo">
+	<h3>Historical Analysis</h3> 
+	<p>hij</p>
+</div>
+
+<h2> Current Month's Expenditure </h2> 
+<div id="chart"></div>
 {{outlet}}
