@@ -1,26 +1,34 @@
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
 <h1 id="title">Welcome to Chartreuse</h1> 
-<h4 id="description">Your Personal and Secure Banking Application</h4><br><br> 
-<ul class="tabs">
-	<li><a href="javascript:void(0)" class="tab" onclick="openPage(event, 'Current Month Expenditure')">Current Month Expenditure</a></li>
-	<li><a href="javascript:void(0)" class="tab" onclick="openPage(event, 'Past Months Expenditure')">Past Months Expenditure</a></li> 
-	<li><a href="javascript:void(0)" class="tab" onclick="openPage(event, 'Historical Analysis')">Historical Analysis</a></li>
-</ul>
-
-<div id="CME" class="tabinfo">
-	<h3>Current Month Expenditure</h3> 
-	<p>xyz</p>
-</div> 
-
-<div id="PME" class="tabinfo">
-	<h3>Past Months Expenditure</h3> 
-	<p>abc</p>
-</div>
-
-<div id="HA" class="tabinfo">
-	<h3>Historical Analysis</h3> 
-	<p>hij</p>
-</div>
-
-<h2> Current Month's Expenditure </h2> 
-<div id="chart"></div>
+	<h4 id="description">Your Personal and Secure Banking Application</h4>
+		<ul class="nav nav-tabs">
+    		<li class="active"><a data-toggle="tab" href="#CME">Current Month's Expenditure</a></li>
+    		<li><a data-toggle="tab" href="#PME">Past Months Expenditure</a></li>
+    		<li><a data-toggle="tab" href="#HA">Historical Analysis</a></li>
+ 		 </ul>
+  <div class="tab-content">
+    <div id="CME" class="tab-pane fade in active">
+      <h3>Current Month's Expenditure</h3>
+      <p>XYZ</p>
+    </div>
+    <div id="PME" class="tab-pane fade">
+      <h3>Past Month's Expenditure</h3>
+      <p>ABC</p>
+    </div>
+    <div id="HA" class="tab-pane fade">
+      <h3>Historical Analysis</h3>
+      <p></p>
+    </div>
+  </div>
+</body>
+{{ember-chart type='pie' data=pieData width=200 height=200 legend=true}}
 {{outlet}}
