@@ -12,10 +12,16 @@
 	<h4 id="description">Your Personal and Secure Banking Application</h4>
 		<ul class="nav nav-tabs">
     		<li class="active"><a data-toggle="tab" href="#CME">Current Month's Expenditure</a></li>
-    		<li><a data-toggle="tab" href="#PME">Past Months Expenditure</a></li>
+    		<li class="dropdown">
+      		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Past Months Expenditure <span class="caret"></span></a>
+     	 		<ul class="dropdown-menu">
+        			<li><a href="#">October 2016</a></li>
+        			<li><a href="#">September 2016</a></li>
+        			<li><a href="#">August 2016</a></li>
+      			</ul>
+    		</li>
     		<li><a data-toggle="tab" href="#HA">Historical Analysis</a></li>
     		<li><a data-toggle="tab" href="#IT">Import Table</a></li> 
-
  		 </ul>
   <div class="tab-content">
     <div id="CME" class="tab-pane fade in active">
@@ -24,7 +30,7 @@
       {{ember-chart type='pie' data=pieData width=350 height=350 legend=true}} 
     </div>
     <div id="PME" class="tab-pane fade in active">
-      <h3>Past Month's Expenditure</h3>
+      <h3>Past Month's Expenditure</h3>  
       <p>ABC</p> 
       {{ember-chart type='pie' data=pieData2 width=350 height=350 legend=true}}
     </div>
