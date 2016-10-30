@@ -57,5 +57,24 @@ export default Ember.Controller.extend({
 				}
 			]
 		};
-	})
+	}),
+	actions: {
+		addrow: function(){
+			var table = document.getElementById("ITable");
+			var row = table.insertRow(table.length);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			cell1.innerHTML = "Insert Date(MM/DD/YYYY)";
+			cell2.innerHTML = "Insert Description";
+			cell3.innerHTML = "Insert Amount($0.00)";
+			cell4.innerHTML = "<button contenteditable='false' type='button' {{action 'delrow'}}> Delete </button>";
+		},
+		delrow: function(){
+			var row = document.getElementByTagName("tr");
+			var spot = row.rowIndex;
+			document.getElementById("ITable").deleteRow(spot);
+		}
+	}
 });

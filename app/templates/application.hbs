@@ -26,46 +26,32 @@
   <div class="tab-content">
     <div id="CME" class="tab-pane fade in active">
       <h3>Current Month's Expenditure</h3>
-      <p>XYZ</p>
+      <p>This chart shows your expenditure for this month. To add expenses to this chart, go to the Import Data tab and import expenses.</p>
       {{ember-chart type='pie' data=pieData width=350 height=350 legend=true}}
     </div>
     <div id="PME" class="tab-pane fade in active">
       <h3>Past Month's Expenditure</h3>
-      <p>ABC</p>
+      <p>This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.</p>
       {{ember-chart type='pie' data=pieData2 width=350 height=350 legend=true}}
     </div>
     <div id="HA" class="tab-pane fade in active">
       <h3>Historical Analysis</h3>
-      <p></p>
+      <p>This chart shows the average amount of spent monthly on specific categories.</p>
       {{ember-chart type='pie' data=pieData3 width=350 height=350 legend=true}}
     </div>
     <div id="IT" class="tab-pane fade">
       <h3>Import Table</h3> 
       	<p></p>
-        <table class="table table-striped">
+      	<button type="button" {{action 'addrow'}}> Add New Entry </button>
+        <table id="ITable" class="table table-striped" contenteditable="true">
     		<thead>
-      		<tr>
+      		<tr contenteditable="false">
         		<th>Date</th>
         		<th>Description</th>
         		<th>Amount</th>
       		</tr>
     		</thead>
     		<tbody>
-      		<tr>
-        		<td>10/2</td>
-        		<td>Happy Hour</td>
-        		<td>$17.93</td>
-      		</tr>
-      		<tr>
-        		<td>10/21</td>
-        		<td>Happy Hour</td>
-        		<td>$183.83</td>
-      		</tr>
-      		<tr>
-        		<td>10/31</td>
-        		<td>Happy Hour</td>
-        		<td>$12.34</td>
-      		</tr>
     		</tbody>
   		</table>
     </div>
