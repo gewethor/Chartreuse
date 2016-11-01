@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 	pieValue3: 100,
 	pieData: Ember.computed('pieValue1', 'picValue2', 'pieValue3', function(){
 		return {
-		labels: ["Red", "Green", "Yellow"],
+		labels: ["Purple", "Green", "Bittersweet"],
 		datasets: [
 				{
 					data:[
@@ -14,8 +14,8 @@ export default Ember.Controller.extend({
 						parseInt(this.get('pieValue2')),
 						parseInt(this.get('pieValue3'))
 					],
-					backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-					hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e"]
 				}
 			]
 		};
@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
 	pieValue6: 600,
 	pieData2: Ember.computed('pieValue4', 'picValue5', 'pieValue6', function(){
 		return {
-		labels: ["Red", "Green", "Yellow"],
+		labels: ["Purple", "Green", "Bittersweet"],
 		datasets: [
 				{
 					data:[
@@ -33,8 +33,8 @@ export default Ember.Controller.extend({
 						parseInt(this.get('pieValue5')),
 						parseInt(this.get('pieValue6'))
 					],
-					backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-					hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e"]
 				}
 			]
 		};
@@ -44,7 +44,7 @@ export default Ember.Controller.extend({
 	pieValue9: 100,
 	pieData3: Ember.computed('pieValue7', 'picValue8', 'pieValue9', function(){
 		return {
-		labels: ["Red", "Green", "Yellow"],
+		labels: ["Purple", "Green", "Bittersweet"],
 		datasets: [
 				{
 					data:[
@@ -52,8 +52,8 @@ export default Ember.Controller.extend({
 						parseInt(this.get('pieValue8')),
 						parseInt(this.get('pieValue9'))
 					],
-					backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-					hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e"]
 				}
 			]
 		};
@@ -69,17 +69,17 @@ export default Ember.Controller.extend({
 			var cell4 = row.insertCell(3);
 			var cell5 = row.insertCell(4);
 			cell1.innerHTML = "Insert Date(MM/DD/YYYY)";
-			cell1.className = "inputValue"
+			cell1.className = "inputValue";
 			cell2.innerHTML = "Insert Description";
-			cell2.className = "inputValue"
+			cell2.className = "inputValue";
 			cell3.innerHTML = "Insert Amount($0.00)";
-			cell3.className = "inputValue"
-			cell4.innerHTML = "<ul id='list'><select id='categories' class='inputValue' name='categories'><option>Select Option</option><option>Fast Food</option><option>Happy Hour</option></select></ul>";
-			cell5.innerHTML = "<button contenteditable='false' type='button' {{action 'deleteRow' this}}> Delete </button>";
+			cell3.className = "inputValue";
+			cell4.innerHTML = "<ul id='list'><select id='categories' class='inputValue' name='categories'><option>Select Option</option><option>Fast Food</option><option>Happy Hour</option><option>Clothing</option><option>Short Term Savings</option><option>Long Term Savings</option><option>Makeup</option><option>Vacation Expense</option></select></ul>";
+			cell5.innerHTML = "<button contenteditable='false' type='button' {{action 'deleteRow'}}> Delete </button>";
 		},
-		deleteRow: function(r){
-			var i = r.parentNode.parentNode.rowIndex;
-			document.getElementById('ITable').deleteRow(i);
+		deleteRow: function(){
+			$(this).closest('tr').remove();
+			return false;
 		},
 		submit: function(){
 			var data = $("#ITable tr.data").map(function (index, elem) {
@@ -91,31 +91,49 @@ export default Ember.Controller.extend({
 				});
 				return ret;
 			});
-			console.log(data);
-			var ftable = document.getElementById("ITable").innerHTML;
-			console.log(ftable);
+			for(var dcount = 0; dcount < data.length; dcount = dcount + 4){
+				var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+				if(data[dcount].match(re) === null){
+					alert("You ducked up the date.");
+				}else {
+				var parts = data[dcount].split("/");
+				var day = parseInt(parts[1], 10);
+				var month = parseInt(parts[0], 10);
+				var year = parseInt(parts[2], 10);
+
+				if(year < 1000 || year > 3000 || month === 0 || month > 12){
+					alert("You ducked the date.");
+					return false;
+				}
+
+				var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+				//if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)){
+				//	monthLength[1] = 29;
+				//	return day > 0 && day <= monthLength[month - 1];
+				//}
+				localStorage.setItem("Date"+dcount, data[dcount]);
+				}
+			}
+			for(var desc = 1; desc < data.length; desc = desc + 4){
+				var redesc = /^[a-zA-Z0-9]/;
+				if(data[desc].match(redesc) === null){
+					alert("What you tryna do? Duck with the gram?");
+				} else {
+					localStorage.setItem("Description"+desc, data[desc]);
+				}
+			}
+			for(var ammo = 2; ammo < data.length; ammo = ammo + 4){
+				var reammo = /^\d+(?:\.\d{0,2})$/;
+				if(data[ammo].match(reammo) === null){
+					alert("Mo Money, Mo Problems");
+				} else {
+					localStorage.setItem("Amount"+ammo, data[ammo]);
+				}
+			}
+			for(var opt = 3; opt < data.length; opt = opt + 4){
+				localStorage.setItem("Option"+opt, data[opt]);
+			}
 		}
-		 
-		/*  
-		dateValid: function (dateString) {
-			if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
-        	return false;
-
-    		var parts = dateString.split("/");
-    		var day = parseInt(parts[1], 10);
-    		var month = parseInt(parts[0], 10);
-    		var year = parseInt(parts[2], 10);
-
-    		if(year < 1000 || year > 3000 || month == 0 || month > 12)
-        	return false;
-
-    		var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-		    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-        	monthLength[1] = 29;
-
-    		return day > 0 && day <= monthLength[month - 1];
-			} 
-			*/
 	}
 });

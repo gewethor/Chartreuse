@@ -1,12 +1,19 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-right search-field">
+      {{auth-manager class="auth-mgr" userid=userid}}
+    </div>
+  </div>
+</nav> 
+<br><br>
 <head>
   <title>Bootstrap Case</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 </head>
-
 <body>
 <h1 id="title">Welcome to Chartreuse</h1> 
 	<h4 id="description">Your Personal and Secure Banking Application</h4>
@@ -61,7 +68,12 @@
                 <select id='categories' class='inputValue' name='categories'>
                   <option>Select Option</option>
                   <option>Fast Food</option>
-                  <option>Happy Hour</option>
+                  <option>Happy Hour</option> 
+                  <option>Clothing</option>
+                  <option>Short Term Savings</option>
+                  <option>Long Term Savings</option>
+                  <option>Makeup</option>
+                  <option>Vacation Expense</option>
                 </select>
               </ul>
             </td>
