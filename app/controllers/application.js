@@ -72,7 +72,7 @@ export default Ember.Controller.extend({
 			cell1.className = "inputValue";
 			cell2.innerHTML = "Insert Description";
 			cell2.className = "inputValue";
-			cell3.innerHTML = "Insert Amount($0.00)";
+			cell3.innerHTML = "Insert Amount(0.00)";
 			cell3.className = "inputValue";
 			cell4.innerHTML = "<ul id='list'><select id='categories' class='inputValue' name='categories'><option>Select Option</option><option>Fast Food</option><option>Happy Hour</option><option>Clothing</option><option>Short Term Savings</option><option>Long Term Savings</option><option>Makeup</option><option>Vacation Expense</option></select></ul>";
 			cell5.innerHTML = "<button contenteditable='false' type='button' {{action 'deleteRow'}}> Delete </button>";
@@ -83,18 +83,18 @@ export default Ember.Controller.extend({
 		},
 		submit: function(){
 			var data = $("#ITable tr.data").map(function (index, elem) {
-				var ret = [];
+				var sub = [];
 				$('.inputValue', this).each(function () {
 					var d = $(this).val() || $(this).text();
-					ret.push(d);
+					sub.push(d);
 					console.log(d);
 				});
-				return ret;
+				return sub;
 			});
 			for(var dcount = 0; dcount < data.length; dcount = dcount + 4){
 				var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 				if(data[dcount].match(re) === null){
-					alert("You ducked up the date.");
+					alert("Please submit a date with the format MM/DD/YYYY.");
 				}else {
 				var parts = data[dcount].split("/");
 				var day = parseInt(parts[1], 10);
@@ -102,7 +102,7 @@ export default Ember.Controller.extend({
 				var year = parseInt(parts[2], 10);
 
 				if(year < 1000 || year > 3000 || month === 0 || month > 12){
-					alert("You ducked the date.");
+					alert("Please submit a valid date.");
 					return false;
 				}
 
@@ -118,7 +118,7 @@ export default Ember.Controller.extend({
 			for(var desc = 1; desc < data.length; desc = desc + 4){
 				var redesc = /^[a-zA-Z0-9]/;
 				if(data[desc].match(redesc) === null){
-					alert("What you tryna do? Duck with the gram?");
+					alert("Sorry! No special characters accepted.");
 				} else {
 					localStorage.setItem("Description"+desc, data[desc]);
 				}
@@ -126,7 +126,7 @@ export default Ember.Controller.extend({
 			for(var ammo = 2; ammo < data.length; ammo = ammo + 4){
 				var reammo = /^\d+(?:\.\d{0,2})$/;
 				if(data[ammo].match(reammo) === null){
-					alert("Mo Money, Mo Problems");
+					alert("Please submit a valid curreny amount (0.00)");
 				} else {
 					localStorage.setItem("Amount"+ammo, data[ammo]);
 				}
