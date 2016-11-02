@@ -82,7 +82,7 @@ export default Ember.Controller.extend({
 			return false;
 		},
 		submit: function(){
-			var data = $("#ITable tr.data").map(function (index, elem) {
+			var data = $("#ITable tr.data").map(function () {
 				var sub = [];
 				$('.inputValue', this).each(function () {
 					var d = $(this).val() || $(this).text();
