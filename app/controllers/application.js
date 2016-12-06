@@ -76,11 +76,10 @@ export default Ember.Controller.extend({
 			cell3.className = "inputValue";
 			cell4.innerHTML = "<ul id='list'><select id='categories' class='inputValue' name='categories'><option>Select Option</option><option>Fast Food</option><option>Happy Hour</option><option>Clothing</option><option>Short Term Savings</option><option>Long Term Savings</option><option>Makeup</option><option>Vacation Expense</option></select></ul>";
 			cell5.innerHTML = "<button contenteditable='false' type='button' {{action 'deleteRow'}}> Delete </button>";
-		},
-		deleteRow: function(){
-			$(this).closest('tr').remove();
-			return false;
-		},
+		}, 
+     	deleterow: function(){   
+
+     	}, 
 		submit: function(){
 			var data = $("#ITable tr.data").map(function () {
 				var sub = [];

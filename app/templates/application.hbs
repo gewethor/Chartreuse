@@ -75,14 +75,14 @@
                   <option>Makeup</option>
                   <option>Vacation Expense</option>
                 </select>
-              </ul>
-            </td>
-            <td><button contenteditable='false' type="button" {{action 'deleteRow' this}}> Delete </button></td>
+              </ul>  
+            </td>  
+            <td><button contenteditable='false' type="button" {{action 'deleterow'}}> Delete </button></td>
           </tr>
     		</tbody>
-  		</table>
+  		</table> 
+      <button type="button" {{action 'submit'}}> Submit </button>
     </div>
-    <button type="button" {{action 'submit'}}> Submit </button>
   </div>
 </body>
 {{outlet}}
