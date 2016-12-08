@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+	lastrow: 0,//last row for keeping track of input table rows
 	pieValue1: 300,
 	pieValue2: 50,
 	pieValue3: 100,
@@ -61,8 +62,10 @@ export default Ember.Controller.extend({
 	actions: {
 		addrow: function(){
 			var table = document.getElementById("ITable");
-			var row = table.insertRow(table.length);
-			row.className = "data";
+			var row = table.insertRow(-1);
+			row.className = "data "+table.length+"rowid";
+			this.set('lastrow', this.get('lastrow')+1);
+			table.children[1].lastChild.id= "rowid-"+this.get('lastrow');
 			var cell1 = row.insertCell(0);
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
@@ -75,16 +78,17 @@ export default Ember.Controller.extend({
 			cell3.innerHTML = "Insert Amount(0.00)";
 			cell3.className = "inputValue";
 			cell4.innerHTML = "<ul id='list'><select id='categories' class='inputValue' name='categories'><option>Select Option</option><option>Fast Food</option><option>Happy Hour</option><option>Clothing</option><option>Short Term Savings</option><option>Long Term Savings</option><option>Makeup</option><option>Vacation Expense</option></select></ul>";
-			cell5.innerHTML = "<button contenteditable='false' type='button' {{action 'deleteRow'}}> Delete </button>";
-		}, 
-     	deleterow: function(){   
-
+			cell5.innerHTML = "<button contenteditable='false' type='button' {{action 'deleterow'}}> Delete </button>";
+		},
+     	deleterow: function(id){ 
+     		console.log(Ember.$('#rowid-'+id));
+     		Ember.$('#rowid-'+id).remove();
      	}, 
 		submit: function(){
-			var data = $("#ITable tr.data").map(function () {
+			var data = Ember.$("#ITable tr.data").map(function () {
 				var sub = [];
-				$('.inputValue', this).each(function () {
-					var d = $(this).val() || $(this).text();
+				Ember.$('.inputValue', this).each(function () {
+					var d = Ember.$(this).val() || Ember.$(this).text();
 					sub.push(d);
 					console.log(d);
 				});
@@ -133,6 +137,6 @@ export default Ember.Controller.extend({
 			for(var opt = 3; opt < data.length; opt = opt + 4){
 				localStorage.setItem("Option"+opt, data[opt]);
 			}
-		}
+		},
 	}
 });

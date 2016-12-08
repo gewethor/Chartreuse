@@ -1,88 +1,91 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-right search-field">
-      {{auth-manager class="auth-mgr" userid=userid}}
-    </div>
-  </div>
-</nav> 
-<br><br>
-<head>
-  <title>Bootstrap Case</title>
+{{auth-manager isLoggedIn=isLoggedIn}} 
+{{#if isLoggedIn}} 
+<h1 id="title">Welcome to Chartreuse</h1> 
+	<h4 id="description">Your Personal and Secure Banking Application</h4>
+<div> 
+<title>Bootstrap Case</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-</head>
-<body>
-<h1 id="title">Welcome to Chartreuse</h1> 
-	<h4 id="description">Your Personal and Secure Banking Application</h4>
-		<ul class="nav nav-tabs">
-    		<li class="active"><a data-toggle="tab" href="#CME">Current Month's Expenditure</a></li>
-    		<li class="dropdown">
-      		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Past Months Expenditure <span class="caret"></span></a>
-     	 		<ul class="dropdown-menu">
-        			<li><a href="#">October 2016</a></li>
-        			<li><a href="#">September 2016</a></li>
-        			<li><a href="#">August 2016</a></li>
-      			</ul>
-    		</li>
-    		<li><a data-toggle="tab" href="#HA">Historical Analysis</a></li>
-    		<li><a data-toggle="tab" href="#IT">Import Table</a></li> 
- 		 </ul>
+
+	<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#CME" aria-controls="CME" role="tab" data-toggle="tab">Current Month's Expenditure</a></li>
+    <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" href="#PME" role="tab" data-toggle="tab">Past Months Expenditure <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#OCT">October 2016</a></li>
+        <li><a href="#SEP">September 2016</a></li>
+        <li><a href="#AUG">August 2016</a></li>
+      </ul>
+    </li>
+    <li role="presentation"><a href="#HA" aria-controls="HA" role="tab" data-toggle="tab">Historical Analysis</a></li>
+    <li role="presentation"><a href="#IT" aria-controls="IT" role="tab" data-toggle="tab" >Import Table</a></li> 
+  </ul>
+
   <div class="tab-content">
-    <div id="CME" class="tab-pane fade in active">
+    <div role="tabpanel" class="tab-pane in active"  id="CME">
       <h3>Current Month's Expenditure</h3>
       <p>This chart shows your expenditure for this month. To add expenses to this chart, go to the Import Data tab and import expenses.</p>
       {{ember-chart type='pie' data=pieData width=350 height=350 legend=true}}
     </div>
-    <div id="PME" class="tab-pane fade in active">
+
+    <div role="tabpanel" class="tab-pane in active" id="PME">
       <h3>Past Month's Expenditure</h3>
       <p>This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.</p>
       {{ember-chart type='pie' data=pieData2 width=350 height=350 legend=true}}
     </div>
-    <div id="HA" class="tab-pane fade in active">
+
+    <div role="tabpanel" class="tab-pane in active"  id="HA">
       <h3>Historical Analysis</h3>
       <p>This chart shows the average amount of spent monthly on specific categories.</p>
       {{ember-chart type='pie' data=pieData3 width=350 height=350 legend=true}}
     </div>
-    <div id="IT" class="tab-pane fade">
+
+    <div role="tabpanel" class="tab-pane in active" id="IT">
       <h3>Import Table</h3> 
-      	<p></p>
-      	<button type="button" {{action 'addrow'}}> Add New Entry </button>
+      <p></p>
+      <button type="button" {{action 'addrow'}}> Add New Entry </button>
         <table id="ITable" class="table table-striped" contenteditable="true">
-    		<thead>
-      		<tr contenteditable="false">
-        		<th>Date</th>
-        		<th>Description</th>
-        		<th>Amount</th>
-      		</tr>
-    		</thead>
-    		<tbody>
-          <tr class="data">
-            <td class="inputValue">Insert Date(MM/DD/YYYY)</td>
-            <td class="inputValue">Insert Description</td>
-            <td class="inputValue">Insert Amount(0.00)</td>
-            <td>
-              <ul id='list'>
-                <select id='categories' class='inputValue' name='categories'>
-                  <option>Select Option</option>
-                  <option>Fast Food</option>
-                  <option>Happy Hour</option> 
-                  <option>Clothing</option>
-                  <option>Short Term Savings</option>
-                  <option>Long Term Savings</option>
-                  <option>Makeup</option>
-                  <option>Vacation Expense</option>
-                </select>
-              </ul>  
-            </td>  
-            <td><button contenteditable='false' type="button" {{action 'deleterow'}}> Delete </button></td>
-          </tr>
-    		</tbody>
-  		</table> 
+          <thead>
+            <tr contenteditable="false">
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="data">
+              <td class="inputValue">Insert Date(MM/DD/YYYY)</td>
+              <td class="inputValue">Insert Description</td>
+              <td class="inputValue">Insert Amount(0.00)</td>
+              <td>
+                <ul id='list'>
+                  <select id='categories' class='inputValue' name='categories'>
+                    <option>Select Option</option>
+                    <option>Fast Food</option>
+                    <option>Happy Hour</option> 
+                    <option>Clothing</option>
+                    <option>Short Term Savings</option>
+                    <option>Long Term Savings</option>
+                    <option>Makeup</option>
+                    <option>Vacation Expense</option>
+                  </select>
+                </ul>
+              </td>
+              <td><button contenteditable='false' type="button" {{action 'deleterow'}}> Delete </button></td>
+            </tr>
+          </tbody>
+        </table>
       <button type="button" {{action 'submit'}}> Submit </button>
     </div>
+
   </div>
-</body>
+
+</div>
+  {{else}} 
+    {{#if errorMsg}}
+    {{/if}}
+    {{/if}} 
 {{outlet}}
