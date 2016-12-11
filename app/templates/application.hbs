@@ -1,28 +1,39 @@
-{{auth-manager isLoggedIn=isLoggedIn}} 
-{{#if isLoggedIn}} 
-<h1 id="title">Welcome to Chartreuse</h1> 
+{{auth-manager isLoggedIn=isLoggedIn}}
+{{#if isLoggedIn}}
+<h1 id="title">Welcome to Chartreuse</h1>
 	<h4 id="description">Your Personal and Secure Banking Application</h4>
 <div> 
+
 <title>Bootstrap Case</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#CME" aria-controls="CME" role="tab" data-toggle="tab">Current Month's Expenditure</a></li>
     <li role="presentation" class="dropdown">
-      <a class="dropdown-toggle" href="#PME" role="tab" data-toggle="tab">Past Months Expenditure <span class="caret"></span></a>
+      <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Past Months Expenditure <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="#OCT">October 2016</a></li>
-        <li><a href="#SEP">September 2016</a></li>
-        <li><a href="#AUG">August 2016</a></li>
+        <li role="presentation"><a href="#JAN" aria-controls="JAN" role="tab" data-toggle="tab">January</a></li>
+        <li role="presentation"><a href="#FEB" aria-controls="FEB" role="tab" data-toggle="tab">February</a></li>
+        <li role="presentation"><a href="#MAR" aria-controls="MAR" role="tab" data-toggle="tab">March</a></li>
+        <li role="presentation"><a href="#APR" aria-controls="APR" role="tab" data-toggle="tab">April</a></li>
+        <li role="presentation"><a href="#MAY" aria-controls="MAY" role="tab" data-toggle="tab">May</a></li>
+        <li role="presentation"><a href="#JUN" aria-controls="JUN" role="tab" data-toggle="tab">June</a></li>
+        <li role="presentation"><a href="#JUL" aria-controls="JUL" role="tab" data-toggle="tab">July</a></li>
+        <li role="presentation"><a href="#AUG" aria-controls="AUG" role="tab" data-toggle="tab">Auguest</a></li>
+        <li role="presentation"><a href="#SEP" aria-controls="SEP" role="tab" data-toggle="tab">September</a></li>
+        <li role="presentation"><a href="#OCT" aria-controls="OCT" role="tab" data-toggle="tab">Oktober</a></li>
+        <li role="presentation"><a href="#NOV" aria-controls="NOV" role="tab" data-toggle="tab">November</a></li>
+        <li role="presentation"><a href="#DEC" aria-controls="DEC" role="tab" data-toggle="tab">December</a></li>
       </ul>
     </li>
     <li role="presentation"><a href="#HA" aria-controls="HA" role="tab" data-toggle="tab">Historical Analysis</a></li>
     <li role="presentation"><a href="#IT" aria-controls="IT" role="tab" data-toggle="tab" >Import Table</a></li> 
-  </ul>
+    <li role="presentation"><a href="#VT" aria-controls="VT" role="tab" data-toggle="tab" >View Table</a></li>
+  </ul> 
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane in active"  id="CME">
@@ -44,7 +55,7 @@
     </div>
 
     <div role="tabpanel" class="tab-pane in active" id="IT">
-      <h3>Import Table</h3> 
+      <h3>Import Table</h3>
       <p></p>
       <button type="button" {{action 'addrow'}}> Add New Entry </button>
         <table id="ITable" class="table table-striped" contenteditable="true">
@@ -57,15 +68,15 @@
           </thead>
           <tbody>
             <tr class="data">
-              <td class="inputValue">Insert Date(MM/DD/YYYY)</td>
+              <td class="inputValue">MM/DD/YYYY</td>
               <td class="inputValue">Insert Description</td>
-              <td class="inputValue">Insert Amount(0.00)</td>
+              <td class="inputValue">00.00</td>
               <td>
                 <ul id='list'>
                   <select id='categories' class='inputValue' name='categories'>
                     <option>Select Option</option>
                     <option>Fast Food</option>
-                    <option>Happy Hour</option> 
+                    <option>Happy Hour</option>
                     <option>Clothing</option>
                     <option>Short Term Savings</option>
                     <option>Long Term Savings</option>
@@ -79,13 +90,37 @@
           </tbody>
         </table>
       <button type="button" {{action 'submit'}}> Submit </button>
+    </div> 
+
+    <div role="tabpanel" class="tab-pane in active"  id="VT">
+      <h3>View Table</h3>
+      <p>This table shows all expenditures.</p>
+      <button type="button" {{action 'loaddata'}}> Load Me Some Data </button>
+      <table id="ITable2" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Option</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
     </div>
 
   </div>
 
 </div>
-  {{else}} 
+  {{else}}
     {{#if errorMsg}}
     {{/if}}
-    {{/if}} 
+    {{/if}}
 {{outlet}}
